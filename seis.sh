@@ -1,4 +1,4 @@
-dic_file="/usr/share/dict/words"
+dic_file="/root/muni.txt"
 random_word=$(shuf -n 1 "$dic_file")
 echo "$random_word"
 
