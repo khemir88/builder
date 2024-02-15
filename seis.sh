@@ -1,4 +1,4 @@
-dic_file="/root/muni.txt"
+dic_file="/root/rancho.txt"
 random_word=$(shuf -n 1 "$dic_file")
 echo "$random_word"
 
