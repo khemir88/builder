@@ -1,10 +1,8 @@
 
 # [Nombre Completo]
-[Dirección]  
-[Ciudad, Estado, Código Postal]  
-[Teléfono]  
-[Correo Electrónico]  
-[LinkedIn - Opcional]  
+
+[3314157853]  
+[cristian@xic.mx]  
 
 ---
 
