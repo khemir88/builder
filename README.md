@@ -30,7 +30,7 @@
 - Mantenimiento de equipo hardware.
 - Gestión de inventario.
 - Coordinación con proveedores IT.
-- Poner en marcha nuevos servidores, instalación y configuración de sistemas operativos y paquetes de software necesarios.
+- Instalación y configuración de sistemas operativos y paquetes de software necesarios.
 - Aplicación de actualizaciones del sistema operativo y cambios de configuración.
 - Restauración de la disponibilidad de servidores en caso de fallos.
 - Monitoreo de recursos y desempeño de sistemas, identificación de anomalías y causas.
