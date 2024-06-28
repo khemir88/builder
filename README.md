@@ -1,15 +1,12 @@
-
-# [Nombre Completo]
-
-[3314157853]  
-[cristian@xic.mx]  
+# Cristian Trujillo Gonzlez
+3314157853
+cristian@xic.mx
 
 ---
 
 ## OBJETIVO PROFESIONAL
 
-[Una breve descripción de tus objetivos profesionales y lo que buscas en tu próxima oportunidad laboral.]
-
+Proveer servicios de intraestructura en servidores locales y en la nube.
 ---
 
 ## EXPERIENCIA PROFESIONAL
@@ -19,19 +16,16 @@
 *19/Oct/2018 – 15/Ago/2023*
 
 **Logros:**
-- Soporte técnico a usuarios.
-- Atención a sistema de tickets.
-- Cambio de contraseñas.
-- Gestión de correo electrónico e internet.
-
+- Automatizacion en la instalacion de servidores Linux y Windows (PXE).
+- 
 **Responsabilidades:**
 - Administración de servidores.
 - Implementación de nuevos proyectos.
 - Mantenimiento de equipo hardware.
 - Gestión de inventario.
 - Coordinación con proveedores IT.
-- Instalación y configuración de sistemas operativos y paquetes de software necesarios.
-- Aplicación de actualizaciones del sistema operativo y cambios de configuración.
+- Poner en marcha nuevos servidores, instalación y configuración de sistemas operativos y paquetes de software necesarios.
+- Aplicación de actualizaciones del sistema operativo y cambios de configuración. Con ``ansible`` y ``WSUS``
 - Restauración de la disponibilidad de servidores en caso de fallos.
 - Monitoreo de recursos y desempeño de sistemas, identificación de anomalías y causas.
 - Actualización de licencias, certificaciones y permisos de usuarios.
