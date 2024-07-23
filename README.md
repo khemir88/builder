@@ -1,8 +1,8 @@
 # Compile
 
-cd linux-source
-cp /boot/$(uname -r)conf .config
-scripts/config --disable MODULE_SIG
+   cd linux-source
+   cp /boot/$(uname -r)conf .config
+   scripts/config --disable MODULE_SIG
 
 
     Open .config file in vim.
