@@ -18,7 +18,10 @@ sudo make install
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
-
+# TIPS
+```
+virsh change-media villa-corona --path sda --eject --live
+```
 # builder
 Small shells to build img files on KVM
 Es necearios inicair la vm con estos parametros
