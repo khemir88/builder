@@ -3,8 +3,8 @@ random_word=$(shuf -n 1 "$dic_file")
 echo "$random_word"
 
 virt-install \
-	--name $random_word.qcow --memory 2048 \
-	--disk $random_word,size=6.1 \
+	--name $random_word --memory 2048 \
+	--disk /mnt/vms/$random_word.qcow,size=6.1 \
 	--os-variant centos7.0 \
 	--memory 4098 \
 	--vcpus 2 \
