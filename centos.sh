@@ -4,7 +4,7 @@ echo "$random_word"
 
 virt-install \
 	--name $random_word --memory 2048 \
-	--disk /mnt/vms/$random_word.qcow,size=6.1 \
+	--disk /mnt/vms/$random_word.qcow,size=13.1 \
 	--os-variant centos7.0 \
 	--memory 4098 \
 	--vcpus 2 \
