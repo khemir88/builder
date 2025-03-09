@@ -1,0 +1,30 @@
+set default=0
+set timeout=60
+menuentry 'EFI Firmware System Setup' $menuentry_id_option 'uefi-firmware' {
+  fwsetup
+}
+
+menuentry 'Reboot' {
+  reboot
+}
+
+menuentry 'Shutdown' {
+  halt
+}
+
+
+menuentry 'Install CentOS Stream 9 (KS) (UEFI)' --class fedora --class gnu-linux --class gnu --class os {
+  echo "Loading CentOS Stream 9 kernel..."
+  linux centos9/vmlinuz inst.ks=http://192.168.1.195:8000/cl2.ks ip=dhcp inst.text inst.singlelang
+  echo "Loading initrd..."
+  initrd centos9/initrd.img
+}
+
+menuentry 'Install Rocky 9.4 (KS) (UEFI)' --class fedora --class gnu-linux --class gnu --class os {
+  echo "Loading kernel..."
+  linux rocky9/vmlinuz inst.ks=http://192.168.1.198:8000/cl2.ks ip=dhcp inst.text inst.singlelang
+  echo "Loading initrd..."
+  initrd rocky9/initrd.img
+}
+
+#inst.ks=http://192.168.1.195:8000/MasterR94.ks ip=dhcp inst.text inst.singlelang bootdev=eth0

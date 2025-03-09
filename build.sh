@@ -3,7 +3,7 @@ random_word=$(shuf -n 1 "$dic_file")
 echo "$random_word"
 
 
-virt-builder $1 -o /mnt/mucho2/$random_word.img \
+virt-builder $1 -o $random_word.img \
 	--hostname $random_word \
 	--root-password password:password \
 	--smp 2 \

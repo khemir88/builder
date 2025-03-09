@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # List all VMs and store their names in an array
-vm_names=($(virsh list --all --name))
+vm_names=$(virsh list --all --name)
 
 # Iterate through the array and delete each VM
 for vm_name in "${vm_names[@]}"; do

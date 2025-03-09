@@ -3,7 +3,8 @@
 #version=RHEL9
 # Use graphical install
 text
-repo --name="AppStream" --baseurl=file:///run/install/sources/mount-0000-cdrom/AppStream
+url --proxy=http://192.168.1.198:3128 --url=http://mirror.twds.com.tw/rockylinux/9.4/BaseOS/x86_64/os
+
 
 %addon com_redhat_kdump --disable
 
@@ -15,16 +16,14 @@ keyboard --xlayouts='us'
 lang en_US.UTF-8
 
 # Network information
-network  --bootproto=static --ip=172.22.100.200 --netmask=255.255.255.0 --device=eth1 --activate --noipv6
+network  --bootproto=static --ip=172.22.16.200 --netmask=255.255.255.0 --device=eth1 --activate --noipv6
 network  --bootproto=dhcp --device=eth0 --ipv6=auto --activate
-network  --hostname=fire
+network  --hostname=fire2
 firewall --enable 
 firewall --ssh
 firewall --service=dhcp,tftp,squid
 services --disabled="kdump"
 
-# Use CDROM installation media
-cdrom
 
 %packages
 @^minimal-environment
@@ -46,7 +45,6 @@ grub2-tools-extra
 grub2-pc-modules
 tree
 git
-dig
 unzip
 ansible-core
 -aic94xx-firmware
@@ -84,14 +82,14 @@ eula --agreed
 # Run the Setup Agent on first boot
 firstboot --enable
 # System bootloader configuration
-bootloader --location=mbr --boot-drive=sda
+bootloader --location=mbr --boot-drive=vda
 
 # Clear all partitions on /dev/sda
-clearpart --all --initlabel --drives=sda
+clearpart --all --initlabel --drives=vda
 
 # Disk partitioning information
 reqpart --add-boot
-part pv.01 --grow --size=1 --ondisk=sda
+part pv.01 --grow --size=1 --ondisk=vda
 volgroup vg0 --pesize=4 pv.01
 logvol / --fstype="xfs" --name=root --vgname=vg0 --size=18240 --grow
 logvol swap --name=swap --vgname=vg0 --size=2048 --grow --maxsize=4096
@@ -117,7 +115,7 @@ echo "My IP address: \4" >> /etc/issue
 cat <<-EOF > /etc/dnsmasq.d/mio.conf
 # Set the DHCP range and lease time
 interface=eth1
-dhcp-range=172.22.100.201,172.22.100.210,2h
+dhcp-range=172.22.16.201,172.22.16.210,2h
 
 # Set the DNS server to be provided to clients
 dhcp-option=6,192.168.1.254
@@ -144,7 +142,7 @@ wget -r https://mirror.stream.centos.org/9-stream/BaseOS/x86_64/os/images/pxeboo
 wget -r https://mirror.aarnet.edu.au/pub/rocky/9.4/BaseOS/x86_64/os/images/pxeboot/{vmlinuz,initrd.img} -P /var/lib/tftpboot/rocky9 -nd
 restorecon -R /var/lib/tftpboot
 sed -i '8,15d;' /etc/squid/squid.conf
-sed -i '8 i\acl localnet src 172.22.100.0/24' /etc/squid/squid.conf
+sed -i '8 i\acl localnet src 172.22.16.0/24' /etc/squid/squid.conf
 echo "cache_mem 512 MB" >> /etc/squid/squid.conf
 echo "cache_dir ufs /var/spool/squid 20000 16 256" >> /etc/squid/squid.conf
 echo "maximum_object_size 50 MB" >> /etc/squid/squid.conf

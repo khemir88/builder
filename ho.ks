@@ -3,8 +3,7 @@
 #version=RHEL9
 # Use text mode install
 text
-url --proxy=http://192.168.1.198:3128 --url=http://mirror.twds.com.tw/rockylinux/9.4/BaseOS/x86_64/os
-
+#url --proxy=http://192.168.1.198:3128 url --url=http://mirror.twds.com.tw/rockylinux/9.4/BaseOS/x86_64/os
 
 
 # System language
@@ -43,7 +42,6 @@ firstboot --enable
 # Do not configure the X Window System
 skipx
 network  --bootproto=dhcp --device=enp1s0 --ipv6=auto --activate
-network  --hostname=client
 
 # Generated using Blivet version 3.6.0
 
@@ -63,7 +61,21 @@ logvol swap --name=swap --vgname=vg0 --size=2048 --grow --maxsize=4096
 
 #autopart --nohome
 
+%pre
+#!/bin/bash
 
+# Default hostname
+echo "network --device enp1s0 --bootproto dhcp --hostname localhost.localdomain" > /tmp/network-include
+# Search for hostname parameter, if found update the network ks
+for args in `cat /proc/cmdline`; do
+        case $args in hostname*)
+            eval $args
+            sed -i "s/localhost.localdomain/$hostname/g" /tmp/network-include
+            ;;
+        esac;
+    done
+%end
+%include /tmp/network-include
 
 # System timezone
 timezone America/Mexico_City

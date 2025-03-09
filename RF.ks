@@ -3,8 +3,9 @@
 #version=RHEL9
 # Use text mode install
 text
-url --url=http://mirror.twds.com.tw/rockylinux/9.4/BaseOS/x86_64/os
-#url --proxy=http://192.168.1.198:3128 --url=http://mirror.twds.com.tw/rockylinux/9.4/BaseOS/x86_64/os
+cdrom
+
+#url --url=http://mirror.twds.com.tw/rockylinux/9.5/BaseOS/x86_64/os
 
 # System language
 lang en_US.UTF-8
@@ -133,7 +134,7 @@ echo "My IP address: \4" >> /etc/issue
 cat <<-EOF > /etc/dnsmasq.d/mio.conf
 # Set the DHCP range and lease time
 interface=enp2s0
-dhcp-range=172.16.100.201,172.16.100.210,2h
+dhcp-range=172.16.100.201,172.16.100.250,5m
 
 # Set the DNS server to be provided to clients
 dhcp-option=6,192.168.1.254
@@ -157,7 +158,7 @@ dnf -y install ansible
 mkdir -v /var/lib/tftpboot
 chcon -t tftpdir_rw_t /var/lib/tftpboot
 grub2-mknetdir --net-directory /var/lib/tftpboot/
-wget http://192.168.1.198:8000/grub.cfg -P /var/lib/tftpboot/boot/grub2/
+wget https://raw.githubusercontent.com/khemir88/builder/refs/heads/bra1/grub.cfg -P /var/lib/tftpboot/boot/grub2/
 wget -r https://mirror.stream.centos.org/9-stream/BaseOS/x86_64/os/images/pxeboot/{vmlinuz,initrd.img} -P /var/lib/tftpboot/centos9 -nd
 restorecon -R /var/lib/tftpboot
 sed -i '8,15d;' /etc/squid/squid.conf

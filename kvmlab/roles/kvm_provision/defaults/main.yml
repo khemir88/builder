@@ -1,0 +1,13 @@
+---
+# defaults file for kvm_provision https://ftp-chi.osuosl.org/pub/fedora/linux/releases/40/Cloud/x86_64/images/Fedora-Cloud-Base-Generic.x86_64-40-1.14.qcow2
+base_image_name: Fedora-Cloud-Base-Generic.x86_64-40-1.14.qcow2
+base_image_url: https://ftp-chi.osuosl.org/pub/fedora/linux/releases/40/Cloud/x86_64/images/{{ base_image_name }}
+base_image_sha: ac58f3c35b73272d5986fa6d3bc44fd246b45df4c334e99a07b3bbd00684adee
+libvirt_pool_dir: "/home/cristian"
+vm_name: f34-dev
+vm_vcpus: 2
+vm_ram_mb: 2048
+vm_net: default
+vm_root_pass: password
+cleanup_tmp: no
+ssh_key: /home/cristian/.ssh/id_rsa.pub

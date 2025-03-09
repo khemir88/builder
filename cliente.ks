@@ -3,20 +3,20 @@
 #version=RHEL9
 # Use text mode install
 text
-url --proxy=http://192.168.1.198:3128 --url=http://mirror.twds.com.tw/rockylinux/9.4/BaseOS/x86_64/os
-
-
-
+url --url=http://mirror.twds.com.tw/rockylinux/9.4/BaseOS/x86_64/os
 # System language
 lang en_US.UTF-8
 
 %packages
 @^minimal-environment
-words
+vim
+net-tools
+dns-utils
 bc
 tcpdump
 bind-chroot
 vim-enhanced
+bash-compl*
 -a*firmware*
 -dracut-config-rescue
 -gawk-all-langpacks
@@ -42,11 +42,14 @@ lang en_US.UTF-8
 firstboot --enable
 # Do not configure the X Window System
 skipx
-network  --bootproto=dhcp --device=enp1s0 --ipv6=auto --activate
-network  --hostname=client
 
-# Generated using Blivet version 3.6.0
+firewall --enable 
+firewall --ssh
 
+services --disabled="kdump"
+services --enable="sshd"
+
+# Run the Setup Agent on first boot
 firstboot --enable
 # System bootloader configuration
 bootloader --location=mbr --boot-drive=vda
@@ -63,7 +66,21 @@ logvol swap --name=swap --vgname=vg0 --size=2048 --grow --maxsize=4096
 
 #autopart --nohome
 
+%pre
+#!/bin/bash
 
+# Default hostname
+echo "network --device enp1s0 --bootproto dhcp --hostname localhost.localdomain" > /tmp/network-include
+# Search for hostname parameter, if found update the network ks
+for args in `cat /proc/cmdline`; do
+        case $args in hostname*)
+            eval $args
+            sed -i "s/localhost.localdomain/$hostname/g" /tmp/network-include
+            ;;
+        esac;
+    done
+%end
+%include /tmp/network-include
 
 # System timezone
 timezone America/Mexico_City
@@ -74,6 +91,7 @@ rootpw --iscrypted $6$UEYoS7LAC21pbjS.$PCnTHOqoJupnIrD0O93Smj/1fqBrtavd.xCCIIMv.
 %post --log=/root/post.log
 echo "proxy=http://192.168.1.198:3128" >> /etc/dnf/dnf.conf
 echo "My IP address: \4" >> /etc/issue
+
 %end
 
 reboot
