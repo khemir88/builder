@@ -125,5 +125,17 @@ Disponibles a solicitud.
 Small shells to build img files on KVM
 Es necearios inicair la vm con estos parametros
 
+# OSCAP
+
+```bash
+%addon org_fedora_oscap
+    content-type = datastream
+    content-url = http://192.168.1.198:8000/ssg-centos7-ds.xml
+    datastream-id = scap_org.open-scap_datastream_from_xccdf_ssg-rhel7-xccdf.xml
+    xccdf-id = scap_org.open-scap_cref_ssg-rhel7-xccdf.xml
+    profile = xccdf_org.ssgproject.content_profile_pci-dss
+%end
+```
+
 ![image](https://github.com/khemir88/builder/assets/157767696/13125cd6-8b47-4b16-b377-96a0ba7f25b8)
 
