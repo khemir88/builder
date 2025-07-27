@@ -136,6 +136,11 @@ Es necearios inicair la vm con estos parametros
     profile = xccdf_org.ssgproject.content_profile_pci-dss
 %end
 ```
-
+# Convierta a Vault
+```bash
+sed -i s/mirror.centos.org/vault.centos.org/g /etc/yum.repos.d/CentOS-*.repo
+sed -i s/^#.*baseurl=http/baseurl=http/g /etc/yum.repos.d/CentOS-*.repo
+sed -i s/^mirrorlist=http/#mirrorlist=http/g /etc/yum.repos.d/CentOS-*.repo
+```
 ![image](https://github.com/khemir88/builder/assets/157767696/13125cd6-8b47-4b16-b377-96a0ba7f25b8)
 
